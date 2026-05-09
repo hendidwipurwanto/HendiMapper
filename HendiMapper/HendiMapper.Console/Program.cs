@@ -4,7 +4,7 @@ using HendiMapper.Extensions;
 var dto = new EmployeeDto
 {
    
-    Age = "30"
+    Age = 30
 };
 
 Console.WriteLine("=== SINGLE OBJECT ===");
@@ -35,12 +35,12 @@ var employeeDtos = new List<EmployeeDto>
 {
     new()
     {
-        Age = "20"
+        Age = 20
     },
 
     new()
     {
-        Age = "25"
+        Age = 25
     }
 };
 

@@ -31,11 +31,11 @@ public static class SimpleMapper
             throw new MapperException(
                 "Source object cannot be null.");
 
-        var sourceProperties = source.GetType()
-            .GetProperties(BindingFlags.Public | BindingFlags.Instance);
+        var sourceProperties = PropertyCache
+    .GetProperties(source.GetType());
 
-        var destinationProperties = typeof(TDestination)
-            .GetProperties(BindingFlags.Public | BindingFlags.Instance);
+        var destinationProperties = PropertyCache
+            .GetProperties(typeof(TDestination));
 
         foreach (var sourceProp in sourceProperties)
         {

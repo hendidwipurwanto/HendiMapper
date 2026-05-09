@@ -8,6 +8,6 @@ namespace HendiMapper.ConsoleTest.Models
 {
     public class EmployeeDto
     {
-        public string Age { get; set; }
+        public int Age { get; set; }
     }
 }
