@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HendiMapper.ConsoleTest.Models
 {
-    public class EmployeeDto
+    public class InvalidEmployeeDto
     {
         public string Age { get; set; }
     }

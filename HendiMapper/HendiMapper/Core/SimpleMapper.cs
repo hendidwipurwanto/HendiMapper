@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using HendiMapper.Exceptions;
 
 namespace HendiMapper.Core;
 
@@ -8,7 +9,8 @@ public static class SimpleMapper
         where TDestination : new()
     {
         if (source == null)
-            return default!;
+            throw new MapperException(
+                "Source object cannot be null.");
 
         var destination = new TDestination();
 
@@ -21,10 +23,14 @@ public static class SimpleMapper
         TDestination destination,
         TSource source)
     {
-        if (destination == null || source == null)
-            return destination;
+        if (destination == null)
+            throw new MapperException(
+                "Destination object cannot be null.");
 
-        // FIX BUG HERE
+        if (source == null)
+            throw new MapperException(
+                "Source object cannot be null.");
+
         var sourceProperties = source.GetType()
             .GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
@@ -34,20 +40,44 @@ public static class SimpleMapper
         foreach (var sourceProp in sourceProperties)
         {
             var destProp = destinationProperties
-                .FirstOrDefault(x =>
-                    x.Name == sourceProp.Name &&
-                    x.PropertyType == sourceProp.PropertyType &&
-                    x.CanWrite);
+                .FirstOrDefault(x => x.Name == sourceProp.Name);
 
+            // property not found
             if (destProp == null)
                 continue;
 
+            // readonly property
+            if (!destProp.CanWrite)
+            {
+                throw new MapperException(
+                    $"Property '{destProp.Name}' on type '{typeof(TDestination).Name}' is readonly.");
+            }
+
+            // strict type validation
+            if (destProp.PropertyType != sourceProp.PropertyType)
+            {
+                throw new MapperException(
+                    $"Property type mismatch for '{sourceProp.Name}'. " +
+                    $"Source type: '{sourceProp.PropertyType.Name}', " +
+                    $"Destination type: '{destProp.PropertyType.Name}'.");
+            }
+
             var value = sourceProp.GetValue(source);
 
+            // skip null
             if (value == null)
                 continue;
 
-            destProp.SetValue(destination, value);
+            try
+            {
+                destProp.SetValue(destination, value);
+            }
+            catch (Exception ex)
+            {
+                throw new MapperException(
+                    $"Failed to map property '{sourceProp.Name}'. " +
+                    $"Error: {ex.Message}");
+            }
         }
 
         return destination;
