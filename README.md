@@ -209,7 +209,7 @@ HendiMapper is intentionally:
 * Easy to debug
 * Easy to learn
 
-The goal is not to replace every mapper.
+The goal is NOT to replace every mapper.
 The goal is to provide a clean alternative for developers who prefer simplicity.
 
 ---
