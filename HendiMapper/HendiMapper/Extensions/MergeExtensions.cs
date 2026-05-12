@@ -1,13 +1,16 @@
 ﻿using HendiMapper.Core;
+using HendiMapper.Exceptions;
 
 namespace HendiMapper.Extensions;
 
 public static class MergeExtensions
 {
-    public static TDestination Merge<TDestination>(
-     this object? source)
-         where TDestination : new()
+    public static TDestination Merge<TDestination>(this object? source) where TDestination : new()
     {
+        if (source == null)
+            throw new MapperException(
+                "Source object cannot be null.");
+
         return SimpleMapper.Map<TDestination>(source);
     }
 
