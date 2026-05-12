@@ -34,13 +34,16 @@ public static class SimpleMapper
         var sourceProperties = PropertyCache
     .GetProperties(source.GetType());
 
-        var destinationProperties = PropertyCache
-            .GetProperties(typeof(TDestination));
+        var destinationPropertyLookup = PropertyCache
+            .GetPropertyLookup(typeof(TDestination));
 
         foreach (var sourceProp in sourceProperties)
         {
-            var destProp = destinationProperties
-                .FirstOrDefault(x => x.Name == sourceProp.Name);
+            var propertyFound = destinationPropertyLookup
+                .TryGetValue(sourceProp.Name, out var destProp);
+
+            if (!propertyFound)
+                continue;
 
             // property not found
             if (destProp == null)
