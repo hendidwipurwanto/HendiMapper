@@ -46,6 +46,24 @@ var employeeDtos = new List<EmployeeDto>
 
 var employees = employeeDtos.Merge<EmployeeDto, Employee>();
 
+Console.WriteLine("=== NESTED MAPPING OBJECT ===");
+var dto2 = new EmployeeDto
+{
+    Name = "Hendi",
+    Age = 30,
+    Address = new AddressDto
+    {
+        City = "Surabaya",
+        Country = "Indonesia"
+    }
+};
+
+var employee2 = dto2.Merge<Employee>();
+
+Console.WriteLine(employee2.Name);
+Console.WriteLine(employee2.Address?.City);
+
+
 foreach (var item in employees)
 {
     Console.WriteLine(item.Age);
