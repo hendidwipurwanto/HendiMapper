@@ -1,6 +1,6 @@
 # HendiMapper
 
-A lightweight zero-configuration object mapper for .NET.
+A lightweight zero-configuration object mapper for .NET focused on simplicity, predictability, and developer experience.
 
 HendiMapper is built for developers who want a simple, predictable, and minimal mapping experience without heavy configuration or magical behavior.
 
@@ -234,9 +234,10 @@ HendiMapper
 * Nullable support
 * Enum support
 * Nested object mapping
-* Benchmark comparison
 * Expression tree optimization
 * Source generator support
+* Expression tree optimization
+* Dictionary-based property lookup optimization
 
 ---
 
