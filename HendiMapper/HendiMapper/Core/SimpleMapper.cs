@@ -57,7 +57,13 @@ public static class SimpleMapper
             }
 
             // strict type validation
-            if (destProp.PropertyType != sourceProp.PropertyType)
+            var isComplexType =
+                !sourceProp.PropertyType.IsPrimitive &&
+                sourceProp.PropertyType != typeof(string) &&
+                !sourceProp.PropertyType.IsEnum;
+
+            if (destProp.PropertyType != sourceProp.PropertyType &&
+                !isComplexType)
             {
                 throw new MapperException(
                     $"Property type mismatch for '{sourceProp.Name}'. " +
@@ -71,8 +77,27 @@ public static class SimpleMapper
             if (value == null)
                 continue;
 
+             
             try
             {
+                if (value != null &&
+                !sourceProp.PropertyType.IsPrimitive &&
+                sourceProp.PropertyType != typeof(string) &&
+                !sourceProp.PropertyType.IsEnum &&
+                destProp.PropertyType != sourceProp.PropertyType)
+                {
+                    var nestedMethod = typeof(SimpleMapper)
+                        .GetMethod(nameof(Map))!
+                        .MakeGenericMethod(destProp.PropertyType);
+
+                    var nestedMappedObject = nestedMethod
+                        .Invoke(null, new[] { value });
+
+                    destProp.SetValue(destination, nestedMappedObject);
+
+                    continue;
+                }
+                //
                 destProp.SetValue(destination, value);
             }
             catch (Exception ex)
