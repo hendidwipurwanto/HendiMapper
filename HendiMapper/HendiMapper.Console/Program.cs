@@ -55,14 +55,15 @@ var dto2 = new EmployeeDto
     {
         City = "Surabaya",
         Country = "Indonesia"
-    }
+    },
+    Password = "SUPER_SECRET_PASSWORD"
 };
 
 var employee2 = dto2.Merge<Employee>();
 
 Console.WriteLine(employee2.Name);
 Console.WriteLine(employee2.Address?.City);
-
+Console.WriteLine(employee2.Password ?? "PASSWORD NOT MAPPED");
 
 foreach (var item in employees)
 {

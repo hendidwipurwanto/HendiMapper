@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HendiMapper.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,8 @@ namespace HendiMapper.ConsoleTest.Models
         public int Age { get; set; }
 
         public AddressDto? Address { get; set; }
+
+        [IgnoreMap]
+        public string? Password { get; set; }
     }
 }

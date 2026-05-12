@@ -1,5 +1,6 @@
-﻿using System.Reflection;
+﻿using HendiMapper.Attributes;
 using HendiMapper.Exceptions;
+using System.Reflection;
 
 namespace HendiMapper.Core;
 
@@ -39,6 +40,12 @@ public static class SimpleMapper
 
         foreach (var sourceProp in sourceProperties)
         {
+            var ignoreAttribute = sourceProp
+            .GetCustomAttribute<IgnoreMapAttribute>();
+
+            if (ignoreAttribute != null)
+            continue;
+
             var propertyFound = destinationPropertyLookup
                 .TryGetValue(sourceProp.Name, out var destProp);
 
