@@ -222,7 +222,19 @@ HendiMapper prioritizes:
 - Developer-friendly debugging
 
 while maintaining reasonable performance for most application scenarios.
+# Automated Testing
 
+HendiMapper includes automated unit tests using xUnit.
+
+Current test coverage includes:
+
+- Object mapping
+- Existing object merge
+- Collection mapping
+- Strict validation
+- Nested object mapping
+- IgnoreMap attribute behavior
+  
 # Current Architecture
 
 ```text
