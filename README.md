@@ -100,7 +100,29 @@ employee.Merge(dto);
 ```
 
 ---
+# Nested Object Mapping
 
+HendiMapper supports recursive nested object mapping.
+
+Example:
+
+```csharp
+public class EmployeeDto
+{
+    public AddressDto? Address { get; set; }
+}
+
+public class Employee
+{
+    public Address? Address { get; set; }
+}
+```
+
+```csharp
+var employee = employeeDto.Merge<Employee>();
+```
+
+Nested properties are automatically mapped recursively.
 # Collection Mapping
 
 ```csharp
@@ -228,12 +250,11 @@ HendiMapper
 * Strict validation
 * Custom exceptions
 * Reflection caching
-
+* Nested object mapping
 ## Planned
 
 * Nullable support
 * Enum support
-* Nested object mapping
 * Expression tree optimization
 * Source generator support
 * Expression tree optimization
