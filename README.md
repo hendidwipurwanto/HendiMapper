@@ -159,6 +159,47 @@ HendiMapper includes reflection property caching using:
 This significantly reduces repeated reflection overhead during mapping operations.
 
 ---
+# Benchmark
+
+Benchmark executed using:
+
+- .NET 8
+- BenchmarkDotNet
+- Intel Core i7-1355U
+- Windows 11
+
+## Benchmark Result
+
+| Mapper        | Mean       | Allocated |
+|----------------|------------|------------|
+| ManualMapping | 4.142 ns   | 32 B       |
+| HendiMapper   | 125.134 ns | 296 B      |
+| AutoMapper    | 49.313 ns  | 32 B       |
+
+## Analysis
+
+Manual mapping is naturally the fastest because it uses direct property assignment without reflection or abstraction.
+
+HendiMapper currently uses:
+
+- Reflection-based mapping
+- Property metadata caching
+- Strict runtime validation
+
+AutoMapper achieves better performance through advanced optimizations such as:
+
+- Compiled expression trees
+- Delegate caching
+- Internal runtime optimizations
+
+HendiMapper prioritizes:
+
+- Simplicity
+- Predictability
+- Minimal setup
+- Developer-friendly debugging
+
+while maintaining reasonable performance for most application scenarios.
 
 # Current Architecture
 
