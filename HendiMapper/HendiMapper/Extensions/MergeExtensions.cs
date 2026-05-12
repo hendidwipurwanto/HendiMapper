@@ -4,8 +4,9 @@ namespace HendiMapper.Extensions;
 
 public static class MergeExtensions
 {
-    public static TDestination Merge<TDestination>(this object source)
-        where TDestination : new()
+    public static TDestination Merge<TDestination>(
+     this object? source)
+         where TDestination : new()
     {
         return SimpleMapper.Map<TDestination>(source);
     }

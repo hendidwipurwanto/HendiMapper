@@ -13,9 +13,9 @@ namespace HendiMapper.Benchmark.Benchmarks
     [MemoryDiagnoser]
     public class MapperBenchmark
     {
-        private EmployeeDto _dto;
+        private EmployeeDto _dto = default!;
 
-        private IMapper _autoMapper;
+        private IMapper _autoMapper = default!;
 
         [GlobalSetup]
         public void Setup()
