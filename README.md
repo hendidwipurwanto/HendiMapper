@@ -170,11 +170,11 @@ Benchmark executed using:
 
 ## Benchmark Result
 
-| Mapper        | Mean       | Allocated |
-|----------------|------------|------------|
-| ManualMapping | 4.142 ns   | 32 B       |
-| HendiMapper   | 125.134 ns | 296 B      |
-| AutoMapper    | 49.313 ns  | 32 B       |
+| Mapper        | Mean      | Allocated |
+|----------------|----------|------------|
+| ManualMapping | 3.639 ns | 32 B       |
+| HendiMapper   | 81.572 ns | 56 B       |
+| AutoMapper    | 45.054 ns | 32 B       |
 
 ## Analysis
 
