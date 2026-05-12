@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HendiMapper", "HendiMapper\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HendiMapper.Benchmark", "HendiMapper.Benchmark\HendiMapper.Benchmark.csproj", "{3123C452-A522-48FE-BF88-94A6496A2496}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HendiMapper.Tests", "HendiMapper.Tests\HendiMapper.Tests.csproj", "{73CDFDFC-9294-4A75-BADB-15654D2BDD84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3123C452-A522-48FE-BF88-94A6496A2496}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3123C452-A522-48FE-BF88-94A6496A2496}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3123C452-A522-48FE-BF88-94A6496A2496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73CDFDFC-9294-4A75-BADB-15654D2BDD84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73CDFDFC-9294-4A75-BADB-15654D2BDD84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73CDFDFC-9294-4A75-BADB-15654D2BDD84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73CDFDFC-9294-4A75-BADB-15654D2BDD84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
