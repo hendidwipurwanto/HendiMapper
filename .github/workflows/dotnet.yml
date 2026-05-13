@@ -4,17 +4,19 @@ on:
   push:
     branches:
       - main
-      - develop
       - feature/**
 
   pull_request:
     branches:
       - main
-      - develop
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./HendiMapper
 
     steps:
       - name: Checkout source code
@@ -25,14 +27,11 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-    - name: Restore dependencies
-    run: dotnet restore
-    working-directory: ./HendiMapper
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Build solution
-    run: dotnet build --no-restore
-    working-directory: ./HendiMapper
+      - name: Build solution
+        run: dotnet build --no-restore
 
-    - name: Run tests
-    run: dotnet test --no-build --verbosity normal
-    working-directory: ./HendiMapper
+      - name: Run tests
+        run: dotnet test --no-build --verbosity normal
