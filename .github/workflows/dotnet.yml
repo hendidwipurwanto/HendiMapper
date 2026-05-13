@@ -25,11 +25,14 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Restore dependencies
-        run: dotnet restore
+    - name: Restore dependencies
+    run: dotnet restore
+    working-directory: ./HendiMapper
 
-      - name: Build solution
-        run: dotnet build --no-restore
+    - name: Build solution
+    run: dotnet build --no-restore
+    working-directory: ./HendiMapper
 
-      - name: Run tests
-        run: dotnet test --no-build --verbosity normal
+    - name: Run tests
+    run: dotnet test --no-build --verbosity normal
+    working-directory: ./HendiMapper
